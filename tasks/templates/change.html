@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Task Create{% endblock %}
+{% block center %}
+		<!-- Center Column -->
+		<div class="col-sm-6">
+                <form method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    {{ username }}
+                    {{uf.as_p}}
+                <input type="submit" value="修改密码"/>
+                </form>
+		</div>
+        <!--/Center Column-->
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Task Dedail{% endblock %}
+{% block center %}
+		<!-- Center Column -->
+		<div class="col-sm-8">
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary" onclick='window.location="/tasks/"'>列表</button>
+				<button type="button" class="btn btn-primary" onclick='window.location="/tasks/createtask/"'>创建</button>
+            </div>
+			<hr>
+			<!-- Article -->
+			<div class="row">
+				<article class="col-xs-12">
+					<h2>{{ article.name }}</h2>
+					<ul class="list-inline">
+						<li><span class="glyphicon glyphicon-time">创建时间：</span>{{ article.create_time | date:"Y-m-d H:i:s"}} </li>
+						{% if article.stat == 2 %}
+						<li><span class="glyphicon glyphicon-time">完成时间：</span>{{ article.finish_time | date:"Y-m-d H:i:s"}} </li>
+						{% else %}
+						<li><span class="glyphicon glyphicon-time">开始时间：</span>{{ article.start_time | date:"Y-m-d H:i:s"}} </li>
+						{% endif %}
+                        <li><span class="glyphicon glyphicon-user">相关人：</span></li>
+                        {% for relate_user in relate_users %}
+                            {{ relate_user.first_name }}
+                        {% endfor %}
+                    </ul>
+					<p class="pull-right"><span class="label label-default">{{ article.create_user_id }}</span></p>
+					<p><hr></p>
+					<p>任务描述：{{ content |safe }}</p>
+				</article>
+			</div>
+			<hr>
+			<div class="row">
+				<article class="col-xs-12">
+                    附件
+					{% for attachment in attachments %}
+                    <li><a href="/tasks/download/{{ attachment.attachment }}">{{ attachment.filename }}</a></li>
+					{% endfor %}
+					<hr>
+
+					<h4>操作笔记:</h4>
+					<form enctype="multipart/form-data" action="/tasks/{{ article.id }}/receive_task/" method="post" novalidate>
+						{% csrf_token %}
+						{{ commentform.as_p }}
+                        上传附件
+                        <input type="file" name="myfile" multiple="multiple"/>
+                        <hr>
+                        {% if article.stat == 0 %}
+						    <input class="btn btn-default" type="submit" value="开始任务" name="Submit" />
+                        {% endif %}
+						<input class="btn btn-default" type="submit" value="保存操作" name="Submit" />
+						<input class="btn btn-default" type="submit" value="完成" name="Submit" />
+					</form>
+				</article>
+			</div>
+			<!-- Comments -->
+			<h3>历史操作记录:</h3>
+			<hr>
+
+			<div class="row">
+				{% for comment in comments %}
+				<article class="col-xs-12">
+
+					<p class="pull-right"> <span class="label label-default">tag</span> <span class="label label-default">{{ comment.operation_user_id }}</span></p>
+					<ul class="list-inline">
+						<li><a href=" ">{{ comment.operation_time | date:"Y-m-d H:i:s" }}</a></li>
+                        <li><a href=" ">{{ comment.operation_user_id }}</a></li>
+					</ul>
+                    {% autoescape off %}
+					<p>{{ comment.operation_description }}</p>
+                    {% endautoescape %}
+				<!-- 	<p><button class="btn btn-default">Read More</button></p>  -->
+				</article>
+			<hr>
+			{% endfor %}
+			<!-- CommentForm   -->
+            </div>
+			<hr>
+		</div><!--/Center Column-->
+{% endblock %}

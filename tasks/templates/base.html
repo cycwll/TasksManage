@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<!-- Template by Quackit.com -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title> {% block title %}RICH DevOps{% endblock %}</title>
+	{% load staticfiles %}
+	<script src="{% static 'csrf.js' %}"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrapValidator.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+        <script type="text/javascript" src="{% static 'tiny_mce/tiny_mce.js' %}"></script>
+        <script type="text/javascript">
+        tinyMCE.init({
+            mode: "textareas",
+            theme: "advanced",
+            language : 'zh-cn',
+            width:"100%",
+            theme_advanced_buttons1:'bold, italic, underline, strikethrough, justifyleft, justifycenter, justifyright, justifyfull, styleselect, bullist, numlist, outdent, indent, undo,redo, link, unlink,',
+            theme_advanced_buttons2:'removeformat, sub, sup, formatselect, fontselect, fontsizeselect, forecolor,charmap,visualaid,spacer,cut,copy,paste,image,cleanup,hr ',
+        });
+        </script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+        .test_box {
+            min-height: 120px;
+            max-height: 300px;
+            _height: 120px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3px;
+            outline: 0;
+            border: 1px solid #a0b3d6;
+            font-size: 12px;
+            word-wrap: break-word;
+            overflow-x: hidden;
+            overflow-y: auto;
+            _overflow-y: visible;
+        }
+        p{
+			word-wrap:break-word
+		}
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe"></span> Logo</a>
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/tasks/">任务</a>
+                    </li>
+                    <li>
+                        <a href="#">故障</a>
+                    </li>
+                    <li>
+                        <a href="#">Tornado</a>
+                    </li>
+                    <li>
+                        <a href="#">Crawler</a>
+                    </li>
+                    <li>
+                        <a href="#">Basics</a>
+                    </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Others <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="about-us">
+							<li><a href="#">Programming World</a></li>
+							<li><a href="#">Poetry and the Distance</a></li>
+							<li><a href="#">The Pots and Pans</a></li>
+						</ul>
+					</li>
+                </ul>
+
+				<!-- Search -->
+				<form class="navbar-form navbar-right" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="请输入任务名称">
+					</div>
+					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+				</form>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<div class="container-fluid">
+
+		<!-- Left Column -->
+		<div class="col-sm-2">
+
+			<!-- List-Group Panel -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+<iframe width="230" scrolling="no" height="120" frameborder="0" allowtransparency="true"
+        src="http://i.tianqi.com/index.php?c=code&id=4&color=%23&bgc=%23&bdc=%23&icon=1&wind=1&num=1"></iframe>
+				</div>
+			</div>
+
+			<!-- Text Panel -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1 class="panel-title"><span class="glyphicon glyphicon-pencil"></span> 留言板</h1>
+				</div>
+				<div class="panel-body">
+                     <form action="/tasks/message/" method="post">
+                        {% csrf_token %}
+                        <div class="test_box" contenteditable="true"></div>
+						<input class="form-control" id="id_message" name="message" type="hidden" required="">
+                        <button type="submit" class="btn btn-default pull-right" onclick="aaa()">提交</button>
+						 <script>
+							function aaa(){
+								$('#id_message').val($('.test_box').html());
+							}
+						 </script>
+                     </form>
+				</div>
+			</div>
+
+			<!-- Text Panel -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-bullhorn"></span>
+						Active Predomination
+					</h3>
+				</div>
+				<div class="panel-body">
+					<p>Proactively envisioned multimedia based expertise and cross-media growth strategies.</p>
+					<div class="btn-group" role="group">
+						<button type="button" class="btn btn-default">Resource</button>
+						<button type="button" class="btn btn-default">Envision</button>
+						<button type="button" class="btn btn-default">Niche</button>
+					</div>
+				</div>
+			</div>
+
+		</div><!--/Left Column-->
+
+
+		<!-- Center Column -->
+        {% block center %}
+        {% endblock %}
+        <!--/Center Column-->
+
+{% block right %}
+	  <!-- Right Column -->
+	  <div class="col-sm-2">
+			{% if request.user.is_authenticated %}
+			<!-- Form -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-user"></span>
+						已登录
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						Hi:{{ user }} <a href="/tasks/logout/"><input class="btn btn-default" type="submit" value="注销" /></a>
+						<a href="/changepass/"><input class="btn btn-default" type="submit" value="修改密码" /></a>
+                    </div>
+				</div>
+			</div>
+			{% else %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-log-in"></span>
+						<button type="button" class="btn btn-default">登录</button>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<form action="/tasks/login/" method="post">
+						{% csrf_token %}
+						{{ loginform.non_field_errors }}
+						<div class="form-group">
+							{{ loginform.uid }}
+						<!--	<input type="text" class="form-control" id="uid" name="uid" placeholder="Username">  -->
+						</div>
+						<div class="form-group">
+							{{ loginform.pwd }}
+						<!--	<input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">  -->
+						</div>
+                        <input type="text" name="check_code" />
+                        {#         /* src为图片的后台地址 */#}
+                        <p>验证码:<img src="/check_code/" onclick="ChangeCode(this);"></p>
+						<button type="submit" class="btn btn-default">登录1</button>
+                        <button type="button" class="btn btn-default" onclick='window.location="/resetpassword/"'>忘记密码</button>
+					</form>
+				</div>
+			</div>
+ 			{% endif %}
+			<!-- Progress Bars -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<span class="glyphicon glyphicon-tasks"></span>
+						Completeness
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100"
+						aria-valuemin="0" aria-valuemax="100" style="width:100%">
+							100% Django
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
+						aria-valuemin="0" aria-valuemax="100" style="width:80%">
+							80% Tornado
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45"
+						aria-valuemin="0" aria-valuemax="100" style="width:45%">
+							45% Crawler
+						</div>
+					</div>
+					<div class="progress">
+						<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="35"
+						aria-valuemin="0" aria-valuemax="100" style="width:35%">
+							35% Basics
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- advertisements -->
+ 			<h3><span class="glyphicon glyphicon-link"></span> Advertisements</h3>
+			<div id="side-carousel" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#side-carousel" data-slide-to="0" class="active"></li>
+					<li data-target="#side-carousel" data-slide-to="1"></li>
+					<li data-target="#side-carousel" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<a href="#">
+							<img class="img-responsive" src="holder.js/400x300?bg=FF8C00&text=Image%201" alt="">
+						</a>
+						<div class="carousel-caption">
+							<h3>I am a genius</h3>
+							<p>Objectively innovate empowered manufactured products whereas parallel platforms.</p>
+						</div>
+					</div>
+					<div class="item">
+						<a href="#">
+							<img class="img-responsive" src="holder.js/400x300?bg=FF8C00&text=Image%202" alt="">
+						</a>
+						<div class="carousel-caption">
+							<h3>You are an idiot</h3>
+							<p>Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+						</div>
+					</div>
+					<div class="item">
+						<a href="#">
+							<img class="img-responsive" src="holder.js/400x300?bg=FF8C00&text=Image%203" alt="">
+						</a>
+						<div class="carousel-caption">
+							<h3>Enough! </h3>
+							<p>Everyone shut up and listen to me.</p>
+						</div>
+					</div>
+				</div>
+				<a class="left carousel-control" href="#side-carousel" role="button" data-slide="prev">
+				  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				  <span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#side-carousel" role="button" data-slide="next">
+				  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				  <span class="sr-only">Next</span>
+				</a>
+			  </div>
+
+	  </div><!--/Right Column -->
+{% endblock %}
+
+	</div><!--/container-fluid-->
+
+	<footer>
+		<div class="footer-blurb">
+			<div class="container">
+				<div class="row">
+				</div>
+				<!-- /.row -->
+			</div>
+        </div>
+
+	</footer>
+
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+	<!-- IE10 viewport bug workaround -->
+	<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+	<script src="{% static 'js/bootstrapValidator.min.js' %}"></script>
+	<script src="{% static 'js/language/zh_CN.js' %}"></script>
+
+	<!-- Placeholder Images -->
+	<script src="{% static 'js/holder.min.js' %}"></script>
+    <script>
+        // 图片验证码点击一次,更改图片内容,
+        function ChangeCode(ths){
+            ths.src = ths.src + '?';
+        }
+    </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    // Generate a simple captcha
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 200), '='].join(' '));
+
+    $('#defaultForm').bootstrapValidator({
+//        live: 'disabled',
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+        $('#defaultForm').bootstrapValidator('validate');
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+});
+</script>
+    <script>
+       document.getElementById("id_description").value="请输入详细需求"
+    </script>
+</body>
+
+</html>

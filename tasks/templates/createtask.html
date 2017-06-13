@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Task Create{% endblock %}
+{% block center %}
+		<!-- Center Column -->
+		<div class="col-sm-8">
+
+            <div class="btn-group">
+					<button type="button" class="btn btn-primary" onclick='window.location="/tasks/"'>列表</button>
+                    <button type="button" class="btn btn-primary" onclick='window.location="/tasks/createtask/"'>创建</button>
+            </div>
+			<!-- Articles -->
+				<hr>
+					<form id="defaultForm" class="form-horizontal" role="form" enctype="multipart/form-data"
+                          action="/tasks/createtask/" method='post' novalidate>
+						{% csrf_token %}
+						<div class="form-group">
+							<label  class="col-sm-2 control-label">任务名称</label>
+							<div class="col-sm-3">{{ ctaskform.task_name }}</div>
+						</div>
+						 <div class="form-group">
+							<label  class="col-sm-2 control-label">项目名称</label>
+							<div class="col-sm-3">{{ ctaskform.project_name }}</div>
+						 </div>
+						<div class="form-group">
+							<label  class="col-sm-2 control-label">任务类型</label>
+							<div class="col-sm-3">{{ ctaskform.tasktype }}</div>
+						 </div>
+						 <div class="form-group">
+							<label  class="col-sm-2 control-label">相关人员</label>
+							<div class="col-sm-3">{{ ctaskform.task_user }}</div>
+						 </div>
+						 <div class="form-group">
+							<label  class="col-sm-2 control-label">任务描述</label>
+							<div class="col-sm-6">{{ ctaskform.description }}</div>
+						 </div>
+						<hr>
+						<div class="form-group">
+							<label  class="col-sm-2 control-label">上传附件<br>(暂不支持中文名)</label>
+							<input type="file" name="myfile" multiple="multiple"/>
+						</div>
+						<hr>
+							<input class="btn btn-default center-block"  type="submit" value="保存">
+					</form>
+				<hr>
+		</div><!--/Center Column-->
+{% endblock %}
